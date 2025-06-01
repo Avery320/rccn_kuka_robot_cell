@@ -1,0 +1,42 @@
+# 西側機器人關節參數
+west_robot:
+  # 初始位置（角度）
+  initial_positions:
+    west_joint_e1: 1.0    # 軌道移動（米）
+    west_joint_a1: 90.0    # 基座旋轉
+    west_joint_a2: 0.0    # 肩部關節
+    west_joint_a3: 90.0    # 肘部關節
+    west_joint_a4: 0.0    # 腕部旋轉
+    west_joint_a5: 0.0    # 腕部彎曲
+    west_joint_a6: 0.0    # 工具端旋轉
+  
+  # 關節限制（角度）
+  joint_limits:
+    west_joint_e1:
+      lower: 0.0     # 軌道移動下限（米）
+      upper: 4.266   # 軌道移動上限（米）
+      velocity: 0.25 # 速度限制（米/秒） 
+    west_joint_a1:
+      lower: -185.0  # 基座旋轉下限
+      upper: 185.0   # 基座旋轉上限
+      velocity: 156.0 # 速度限制（度/秒）
+    west_joint_a2:
+      lower: -155.0  # 肩部關節下限
+      upper: 35.0    # 肩部關節上限
+      velocity: 156.0 # 速度限制（度/秒）
+    west_joint_a3:
+      lower: -130.0  # 肘部關節下限
+      upper: 154.0   # 肘部關節上限
+      velocity: 156.0 # 速度限制（度/秒）
+    west_joint_a4:
+      lower: -350.0  # 腕部旋轉下限
+      upper: 350.0   # 腕部旋轉上限
+      velocity: 330.0 # 速度限制（度/秒）
+    west_joint_a5:
+      lower: -130.0  # 腕部彎曲下限
+      upper: 130.0   # 腕部彎曲上限
+      velocity: 330.0 # 速度限制（度/秒）
+    west_joint_a6:
+      lower: -350.0  # 工具端旋轉下限
+      upper: 350.0   # 工具端旋轉上限
+      velocity: 615.0 # 速度限制（度/秒）

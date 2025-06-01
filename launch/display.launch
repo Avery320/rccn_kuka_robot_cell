@@ -4,10 +4,19 @@
   <arg name="gui" default="true" />
   <arg name="rvizconfig" default="$(find rccn_kuka_robot_cell)/rviz/urdf.rviz" />
 
+  <!-- 載入關節參數配置 -->
+  <rosparam command="load" file="$(find rccn_kuka_robot_cell)/config/joint_limits.yaml" />
+
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
 
-  <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
-  <node unless="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <!-- 使用 GUI 控制器 -->
+  <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    <rosparam param="source_list">[/west_robot/initial_positions]</rosparam>
+  </node>
+  <node unless="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <rosparam param="source_list">[/west_robot/initial_positions]</rosparam>
+  </node>
+  
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
